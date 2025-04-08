@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { BaseContract } from "@ethersproject/contracts";
+import { Contract } from "@ethersproject/contracts";
 import { hexlify } from "@ethersproject/bytes";
 import contract from "./SuffixData.json";
 import deployed from "./deployed_addresses.json";
@@ -42,7 +42,7 @@ function App() {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         console.log(hexlify(data));
-        const contract = new BaseContract(contractAddress, abi, signer, data)
+        const contract = new Contract(contractAddress, abi, signer, data)
         console.log(contract)
         console.log("suffixData", contract.suffixData)
         const tx = await contract.sendData(number)
